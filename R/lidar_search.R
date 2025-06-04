@@ -40,6 +40,7 @@ lidar_search <- function(bbox,
   if (missing(bbox)) {
     stop("Please define a bbox")
   }
+  result <- NULL
   tryCatch(
     result <- return_response(bbox, max_return),
     error = function(e) {
