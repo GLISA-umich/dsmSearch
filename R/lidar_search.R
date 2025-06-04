@@ -43,9 +43,14 @@ lidar_search <- function(bbox,
   tryCatch(
     result <- return_response(bbox, max_return),
     error = function(e) {
-      return(e)
+      return(NULL)
     }
   )
+
+  if (is.null(result)) {
+    return(invisible(NULL))
+  }
+  
   num <- length(result[,1])
   original_timeout <- getOption('timeout')
   original_par <- par(no.readonly = TRUE)
