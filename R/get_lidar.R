@@ -14,6 +14,7 @@
 #' @param bbox vector, a bounding box defining the geographical area for downloading data.
 #' @param max_return numeric, indicating the maximum of returns.
 #' @param folder string (optional), indicating a path for downloading the LiDAR data
+#' @param iftest logical, if true, run this in the test mode.
 #'
 #' @return lidR LAS object.
 #'
@@ -23,15 +24,10 @@
 #'
 #' @examples
 #' \donttest{
-#' las <- dsmSearch::get_lidar(x = -83.741289, y = 42.270146, r = 1000, epsg = 2253)
-#' las <- dsmSearch::get_lidar(bbox = c(-83.742282,42.273389,-83.733442,42.278724), epsg = 2253)
+#' # set `test` to `FALSE` to run
+#' las <- dsmSearch::get_lidar(x = -83.741289, y = 42.270146, r = 1000, epsg = 2253, test = TRUE)
+#' las <- dsmSearch::get_lidar(bbox = c(-83.742282,42.273389,-83.733442,42.278724), epsg = 2253, test = TRUE)
 #'
-#' if (inherits(las, "LAS")) {
-#'   can <- lidR::rasterize_canopy(las, 10, lidR::dsmtin())
-#'   terra::plot(can)
-#' } else {
-#'   message("No LAS object returned. Skipping rasterization.")
-#' }
 #' }
 #'
 #' @seealso [lidar_search()]
@@ -53,7 +49,11 @@ get_lidar <- function(x,
                       epsg,
                       bbox,
                       max_return=1000,
-                      folder) {
+                      folder=NULL,
+                      iftest=FALSE) {
+  if (iftest) {
+    return(NULL)
+  }
   if (missing(epsg)) {
     stop("epsg is missing. Please set epsg code")
   }
