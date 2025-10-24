@@ -145,3 +145,11 @@ retry_download <- function(url, destination, method = "auto", retries = 5, quiet
   }
 }
 
+.use_forestdata <- function() {
+  if (!requireNamespace("forestdata", quietly = TRUE)) {
+    stop("Package 'forestdata' is required for this feature. ",
+         "Please install it (if available) or disable this option.",
+         call. = FALSE)
+  }
+}
+
