@@ -20,8 +20,7 @@ LazyData: true
 Suggests:
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown,
-    forestdata
+    rmarkdown
 VignetteBuilder: knitr,
                  rmarkdown
 Imports: 
@@ -32,4 +31,6 @@ Imports:
     lidR,
     httr2,
     nominatimlite,
-    imager
+    imager,
+    cli, 
+    aws.s3

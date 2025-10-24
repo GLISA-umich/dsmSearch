@@ -63,7 +63,6 @@
 #' @importFrom terra ext
 #' @importFrom terra crs
 #' @importFrom nominatimlite bbox_to_poly
-#' @importFrom forestdata fd_canopy_height
 #' @importFrom httr2 resp_body_raw
 #'
 #' @export
@@ -109,10 +108,10 @@ get_dsm_30 <- function(x, y, r, epsg, bbox,
   } else if (datatype == 'metaCHM' || datatype == 'ethCHM') {
     model_ <- gsub('CHM', '', datatype)
     mask_ <- nominatimlite::bbox_to_poly(bbox=bbox)
-    .use_forestdata()
-    canopy <- forestdata::fd_canopy_height(x = mask_, model = model_,
-                                 layer = "chm", crop = TRUE,
-                                 merge = TRUE)
+
+    canopy <- canopy_height(x = mask_, model = model_,
+                            layer = "chm", crop = TRUE,
+                            merge = TRUE)
     return(canopy)
   }
 }
