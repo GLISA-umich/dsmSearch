@@ -6,6 +6,7 @@
 #' @importFrom httr2 req_headers
 #' @import cli
 #' @import aws.s3
+#' @import stringr
 
 
 #' @noMd
@@ -514,8 +515,8 @@ canopy_height <- function(x     = NULL,
 
   # 1. Get data based on model
   if (model == "eth") {
-    canopy_height_eth(x = x, lon = lon, lat = lat, layer = layer, crop = crop, mask = mask, merge = merge, quiet = quiet)
+    canopy_height_eth(x = x, lon = lon, lat = lat, layer = layer, crop = crop, mask = mask, merge_tiles = merge, quiet = quiet)
   } else if (model == "meta") {
-    canopy_height_meta(x = x, lon = lon, lat = lat, crop = crop, mask = mask, merge = merge, quiet = quiet)
+    canopy_height_meta(x = x, lon = lon, lat = lat, crop = crop, mask = mask, merge_tiles = merge, quiet = quiet)
   }
 }
